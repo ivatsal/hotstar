@@ -17,6 +17,11 @@ export class HomeComponent implements OnInit {
   navPosition: number = 0;
   showPosition: number = 0;
   moviePosition: number = 0;
+  isTopRatedHover: boolean = false;
+  isPopularShowHover: boolean = false;
+  isUpcomingMovieHover: boolean = false;
+  hoveredImageIndex: number = 0;
+  hoveredImageData: any;
   constructor(private movieService: MovieService) { }
 
   ngOnInit() {
@@ -110,5 +115,23 @@ export class HomeComponent implements OnInit {
     if (this.moviePosition < 0) {
       this.moviePosition = 0;
     }
+  }
+
+  onTopRatedImageHover(index: number, hoveredData: any): void {
+    this.hoveredImageIndex = index;
+    this.hoveredImageData = hoveredData;
+    this.isTopRatedHover = true;
+  }
+
+  onPopularShowImageHover(index: number, hoveredData: any): void {
+    this.hoveredImageIndex = index;
+    this.hoveredImageData = hoveredData;
+    this.isPopularShowHover = true;
+  }
+
+  onUpcomingMovieImageHover(index: number, hoveredData: any): void {
+    this.hoveredImageIndex = index;
+    this.hoveredImageData = hoveredData;
+    this.isUpcomingMovieHover = true;
   }
 }
