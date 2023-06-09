@@ -1,9 +1,8 @@
 .navbar {
     /* display: flex; */
-
     .side-nav {
         display: flex;
-        background-color: black;
+        background: linear-gradient(to right, black 10%, transparent 100%);
         position: fixed;
         top: 0;
         left: 0;
@@ -13,7 +12,11 @@
         overflow-x: hidden;
 
         .menu-animation {
-            transition: width 0.4s ease-in-out;
+            transition: width 0.6s ease-in-out;   
+        }
+
+        .test{
+            border: none !important;
         }
 
         .header-logo {
@@ -71,21 +74,19 @@
                 left: 60px;
                 white-space: nowrap;
                 cursor: pointer;
-                /* transition: color 0.3s ease-in-out, transform 0.3s ease-in-out; */
             }
         }
 
         .btn-container button:hover {
             color: white;
             transform: translateY(-6px) translateX(0.1em);
-            /* -webkit-text-stroke-width: medium; */
             font-weight: 800;
             transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
     }
 }
-/* 
-.main-content {
-    flex: 1;
-} */
+
+::ng-deep mat-drawer {
+    box-shadow: none !important;
+}
