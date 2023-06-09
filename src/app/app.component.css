@@ -1,0 +1,91 @@
+.navbar {
+    /* display: flex; */
+
+    .side-nav {
+        display: flex;
+        background-color: black;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        /* background-image: linear-gradient(to bottom, black, white); */
+        text-align: -webkit-center;
+        overflow-x: hidden;
+
+        .menu-animation {
+            transition: width 0.4s ease-in-out;
+        }
+
+        .header-logo {
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+
+            .hot-logo {
+                height: 40px;
+                width: 60px;
+                margin: 20px;
+                cursor: pointer;
+            }
+
+            .subscirbe-text {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 81px;
+                height: 6px;
+                color: rgb(164, 146, 95);
+                /* color: linear-gradient(270deg,#ffcc75 44.93%,#ffe490); */
+                background: rgba(255, 204, 117, .1);
+                border-radius: 15px;
+                padding: 10px;
+                font-size: 14px;
+                cursor: pointer;
+
+                .arrow-icon {
+                    padding-top: 10px;
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .btn-container {
+            color: rgb(157, 158, 159);
+            position: absolute;
+            top: 25%;
+            left: 35px;
+
+            .icon-font {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                padding: 15px 0;
+            }
+
+            .menu-font {
+                /* font-size: 20px; */
+                position: absolute;
+                top: 10px;
+                left: 60px;
+                white-space: nowrap;
+                cursor: pointer;
+                /* transition: color 0.3s ease-in-out, transform 0.3s ease-in-out; */
+            }
+        }
+
+        .btn-container button:hover {
+            color: white;
+            transform: translateY(-6px) translateX(0.1em);
+            /* -webkit-text-stroke-width: medium; */
+            font-weight: 800;
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+    }
+}
+/* 
+.main-content {
+    flex: 1;
+} */

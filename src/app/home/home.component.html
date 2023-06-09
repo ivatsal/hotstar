@@ -1,0 +1,95 @@
+<div class="container">
+    <div class="movie-container">
+        <div [style.background]="'url(https://image.tmdb.org/t/p/original' + selectedMovie?.backdrop_path + ') no-repeat center / cover'"
+            style="background-size: cover; background-position: center;">
+            <img [src]="'https://image.tmdb.org/t/p/w500' + selectedMovie?.backdrop_path" alt="Movie Background"
+                style="visibility: hidden; width: 100%;">
+        </div>
+        <div class="movie-details">
+            <div class="movie-poster">
+                <img style="border-radius: 8px;" [src]="'https://image.tmdb.org/t/p/w200' + selectedMovie?.poster_path" alt="Movie Poster">
+            </div>
+            <div class="movie-info">
+                <h1>{{ selectedMovie?.title }}</h1>
+                <p>{{ selectedMovie?.overview }}</p>
+                <p>Release Date: {{ selectedMovie?.release_date }}</p>
+                <p>Popularity: {{ selectedMovie?.popularity }}</p>
+                <p>Vote Average: {{ selectedMovie?.vote_average }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="selecting-section">
+        <div *ngFor="let movie of movies.slice(currentPosition, currentPosition + 7)"
+            (click)="handleSelectedMovie(movie)">
+            <img class="selecting-img" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="Movie Poster">
+        </div>
+        <div class="move-btns">
+            <span class="selecting-arrow" (click)="forward()"><mat-icon>arrow_forward_ios</mat-icon></span>
+            <span class="selecting-arrow-back" (click)="backward()"><mat-icon>arrow_back_ios</mat-icon></span>
+        </div>
+    </div>
+
+    <div class="trending-container">
+        <div class="head-trending">
+            <a class="trend-title">Top Rated</a>
+            <!-- <a class="trend-title">Latest & Trending</a> -->
+            <a class="view-all">View All <mat-icon class="view-icon">arrow_forward_ios</mat-icon></a>
+        </div>
+        <div class="trend-box">
+            <div *ngFor="let trending of topMovies.slice(navPosition, navPosition + 10)">
+                <div class="trend-poster">
+                    <img class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + trending.poster_path" alt="Movie Poster">
+                </div>
+                <!-- <div class="trend-info">
+                    <h1>{{ trending.title }}</h1>
+                    <p>{{ trending.overview }}</p>
+                    <p>Release Date: {{ trending.release_date }}</p>
+                    <p>Popularity: {{ trending.popularity }}</p>
+                    <p>Vote Average: {{ trending.vote_average }}</p>
+                </div> -->
+            </div>
+        </div>
+        <div class="trend-navigation">
+            <span class="arrow-navigation" (click)="navigationBack()"><mat-icon>arrow_back_ios</mat-icon></span>
+            <span class="arrow-navigation" (click)="navigationForward()"><mat-icon>arrow_forward_ios</mat-icon></span>
+        </div>
+    </div>
+
+    <div class="trending-container">
+        <div class="head-trending">
+            <a class="trend-title">Popular Shows</a>
+            <a class="view-all">View All <mat-icon class="view-icon">arrow_forward_ios</mat-icon></a>
+        </div>
+        <div class="trend-box">
+            <div *ngFor="let tvShows of popularShows.slice(showPosition, showPosition + 10)">
+                <div class="trend-poster">
+                    <img class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + tvShows.poster_path" alt="Movie Poster">
+                </div>
+            </div>
+        </div>
+        <div class="trend-navigation">
+            <span class="arrow-navigation" (click)="tvBack()"><mat-icon>arrow_back_ios</mat-icon></span>
+            <span class="arrow-navigation" (click)="tvForward()"><mat-icon>arrow_forward_ios</mat-icon></span>
+        </div>
+    </div>
+
+
+    <div class="trending-container">
+        <div class="head-trending">
+            <a class="trend-title">Upcomming Movies</a>
+            <a class="view-all">View All <mat-icon class="view-icon">arrow_forward_ios</mat-icon></a>
+        </div>
+        <div class="trend-box">
+            <div *ngFor="let upcomMovie of upcommingMovie.slice(moviePosition, moviePosition + 10)">
+                <div class="trend-poster">
+                    <img class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + upcomMovie.poster_path" alt="Movie Poster">
+                </div>
+            </div>
+        </div>
+        <div class="trend-navigation">
+            <span class="arrow-navigation" (click)="movieBack()"><mat-icon>arrow_back_ios</mat-icon></span>
+            <span class="arrow-navigation" (click)="movieForward()"><mat-icon>arrow_forward_ios</mat-icon></span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="navbar">
+    <mat-drawer-container style="height: 100vh;">
+        <mat-drawer mode="side" opened="true" disableClose class="side-nav" (mouseleave)="menuShow = false">
+            <mat-nav-list class="menu-animation" [style.width]="menuShow ? '250px' : '125px'">
+                <div class="header-logo">
+                    <img src="\assets\imgs\hotstarlogo.svg" class="hot-logo">
+                    <span class="subscirbe-text">Subscribe <mat-icon
+                            class="arrow-icon">arrow_forward_ios</mat-icon></span>
+                </div>
+                <div class="btn-container">
+                    <div class="icon-font" *ngFor="let menu of menuData" (mouseenter)="menuShow = true">
+                        <button mat-icon-button><mat-icon>{{ menu.icon }}</mat-icon>
+                            <a class="menu-font" *ngIf="menuShow">{{ menu.name }}</a>
+                        </button>
+                    </div>
+                </div>
+            </mat-nav-list>
+        </mat-drawer>
+        <mat-drawer-content>
+            <app-home></app-home>
+        </mat-drawer-content>
+    </mat-drawer-container>
+    <!-- <div class="main-content"><app-home></app-home></div> -->
+</div>
+<router-outlet></router-outlet>
