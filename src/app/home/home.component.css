@@ -33,7 +33,6 @@
     flex-direction: row;
     position: absolute;
     max-width: 750px;
-    overflow: hidden;
     top: 80%;
     right: 80px;
     z-index: 3;
@@ -47,10 +46,11 @@
     margin-right: 15px;
     transition: transform 0.3s;
     border-radius: 10px;
+    transform-origin: bottom;
 }
 
 .selecting-img:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
     border-radius: 10px;
 }
 
@@ -60,14 +60,14 @@
 
 .selecting-arrow {
     position: absolute;
-    padding: 46px 10px;
+    padding: 46px 20px 46px 40px;
     right: 10px;
     background: linear-gradient(to left, black 10%, transparent 100%);
 }
 
 .selecting-arrow-back {
     position: absolute;
-    padding: 46px 10px;
+    padding: 46px 40px 46px 20px;
     left: 0px;
     background: linear-gradient(to right, black 10%, transparent 100%);
 }
