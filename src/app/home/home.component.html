@@ -26,8 +26,8 @@
             <img class="selecting-img" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="Movie Poster">
         </div>
         <div class="move-btns">
-            <span class="selecting-arrow" (click)="forward()"><mat-icon>arrow_forward_ios</mat-icon></span>
-            <span class="selecting-arrow-back" (click)="backward()"><mat-icon>arrow_back_ios</mat-icon></span>
+            <span class="selecting-arrow" (click)="forward()" *ngIf="currentPosition + 7 < movies.length"><mat-icon>arrow_forward_ios</mat-icon></span>
+            <span class="selecting-arrow-back" (click)="backward()" *ngIf="currentPosition > 0"><mat-icon>arrow_back_ios</mat-icon></span>
         </div>
     </div>
 
@@ -74,7 +74,7 @@
             <a class="trend-title">Popular Shows</a>
             <a class="view-all">View All <mat-icon class="view-icon">arrow_forward_ios</mat-icon></a>
         </div>
-        <div class="trend-box">
+        <div class="trend-box" #trendBox>
             <div *ngFor="let tvShows of popularShows.slice(showPosition, showPosition + 10); let i = index;">
                 <div class="trend-poster">
                     <img (mouseleave)="isPopularShowHover = false" (mouseenter)="onPopularShowImageHover(i, tvShows)" class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + tvShows.poster_path"
