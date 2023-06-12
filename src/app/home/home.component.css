@@ -120,8 +120,9 @@
         position: relative;
         display: flex;
         flex-direction: row;
-        gap: 10px;
+        gap: 20px;
         overflow: hidden;
+        -webkit-overflow-scrolling: touch;
     }
 
     .trend-poster {

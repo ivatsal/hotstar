@@ -40,13 +40,11 @@
         <div class="trend-box">
             <div *ngFor="let trending of topMovies.slice(navPosition, navPosition + 10); let i = index;">
                 <div class="trend-poster">
-                    <img (mouseleave)="isTopRatedHover = false" (mouseenter)="onTopRatedImageHover(i, trending)"
-                        class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + trending.poster_path"
-                        alt="Movie Poster">
+                    <img (mouseleave)="isTopRatedHover = false" (mouseenter)="onTopRatedImageHover(i, trending)" class="border-img"
+                        [src]="'https://image.tmdb.org/t/p/w200' + trending.poster_path" alt="Movie Poster">
                 </div>
                 <div *ngIf="isTopRatedHover && hoveredImageIndex === i" class="show-details">
-                    <img class="show-details-img"
-                        [src]="'https://image.tmdb.org/t/p/w500' + hoveredImageData.backdrop_path">
+                    <img class="show-details-img" [src]="'https://image.tmdb.org/t/p/w500' + hoveredImageData.backdrop_path">
                     <div class="trend-info">
                         <h1>{{ hoveredImageData.title }}</h1>
                         <p>{{ hoveredImageData.overview }}</p>
@@ -79,13 +77,11 @@
         <div class="trend-box">
             <div *ngFor="let tvShows of popularShows.slice(showPosition, showPosition + 10); let i = index;">
                 <div class="trend-poster">
-                    <img (mouseleave)="isPopularShowHover = false" (mouseenter)="onPopularShowImageHover(i, tvShows)"
-                        class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + tvShows.poster_path"
+                    <img (mouseleave)="isPopularShowHover = false" (mouseenter)="onPopularShowImageHover(i, tvShows)" class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + tvShows.poster_path"
                         alt="Movie Poster">
                 </div>
                 <div *ngIf="isPopularShowHover && hoveredImageIndex === i" class="show-details">
-                    <img class="show-details-img"
-                        [src]="'https://image.tmdb.org/t/p/w500' + hoveredImageData.backdrop_path">
+                    <img class="show-details-img" [src]="'https://image.tmdb.org/t/p/w500' + hoveredImageData.backdrop_path">
                     <div class="trend-info">
                         <h1>{{ hoveredImageData.title }}</h1>
                         <p>{{ hoveredImageData.overview }}</p>
@@ -111,13 +107,11 @@
         <div class="trend-box">
             <div *ngFor="let upcomMovie of upcommingMovie.slice(moviePosition, moviePosition + 10); let i = index;">
                 <div class="trend-poster">
-                    <img (mouseleave)="isUpcomingMovieHover = false"
-                        (mouseenter)="onUpcomingMovieImageHover(i, upcomMovie)" class="border-img"
-                        [src]="'https://image.tmdb.org/t/p/w200' + upcomMovie.poster_path" alt="Movie Poster">
+                    <img (mouseleave)="isUpcomingMovieHover = false" (mouseenter)="onUpcomingMovieImageHover(i, upcomMovie)" class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + upcomMovie.poster_path"
+                        alt="Movie Poster">
                 </div>
                 <div *ngIf="isUpcomingMovieHover && hoveredImageIndex === i" class="show-details">
-                    <img class="show-details-img"
-                        [src]="'https://image.tmdb.org/t/p/w500' + hoveredImageData.backdrop_path">
+                    <img class="show-details-img" [src]="'https://image.tmdb.org/t/p/w500' + hoveredImageData.backdrop_path">
                     <div class="trend-info">
                         <h1>{{ hoveredImageData.title }}</h1>
                         <p>{{ hoveredImageData.overview }}</p>
