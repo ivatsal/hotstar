@@ -1,6 +1,6 @@
 <div class="container">
     <div class="movie-container">
-        <div [style.background]="'url(https://image.tmdb.org/t/p/original' + selectedMovie?.backdrop_path + ') no-repeat center / cover'"
+        <div [style.background]="'linear-gradient(to right, black, transparent 100%), url(https://image.tmdb.org/t/p/original' + selectedMovie?.backdrop_path + ') no-repeat center / cover'"
             style="background-size: cover; background-position: center;">
             <img [src]="'https://image.tmdb.org/t/p/w500' + selectedMovie?.backdrop_path" alt="Movie Background"
                 style="visibility: hidden; width: 100%;">
@@ -38,9 +38,9 @@
             <a class="view-all">View All <mat-icon class="view-icon">arrow_forward_ios</mat-icon></a>
         </div>
         <div class="trend-box">
-            <div *ngFor="let trending of topMovies.slice(navPosition, navPosition + 10); let i = index;">
+            <div *ngFor="let trending of topMovies.slice(navPosition, navPosition + 10); let i = index;" (mouseenter)="onTopRatedImageHover(i, trending)">
                 <div class="trend-poster">
-                    <img (mouseleave)="isTopRatedHover = false" (mouseenter)="onTopRatedImageHover(i, trending)" class="border-img"
+                    <img (mouseleave)="isTopRatedHover = false"  class="border-img"
                         [src]="'https://image.tmdb.org/t/p/w200' + trending.poster_path" alt="Movie Poster">
                 </div>
                 <div *ngIf="isTopRatedHover && hoveredImageIndex === i" class="show-details">

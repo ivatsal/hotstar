@@ -2,7 +2,7 @@
     /* display: flex; */
     .side-nav {
         display: flex;
-        background: linear-gradient(to right, black 10%, transparent 100%);
+        background: linear-gradient(to right, black 5%, transparent 100%);
         position: fixed;
         top: 0;
         left: 0;

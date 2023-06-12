@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class MovieService {
   private apiUrl = 'https://api.themoviedb.org/3';
+  private youtubeApiUrl = 'https://www.youtube.com/watch?v=';
 
   private headers = new HttpHeaders({
     'accept': 'application/json',
@@ -35,4 +36,14 @@ export class MovieService {
     const url = `${this.apiUrl}/movie/upcoming?language=en-US&page=1`;
     return this.http.get(url, { headers: this.headers });
   }
+
+  getMovieVideos(id: number): Observable<any> {
+    const url = `${this.apiUrl}/movie/${id}/videos?language=en-US`;
+    return this.http.get(url, { headers: this.headers });
+  }
+
+  getYouTubeVideoURL(key: string) {
+    return this.http.get(`${this.youtubeApiUrl}${key}`);
+  }
+
 }
