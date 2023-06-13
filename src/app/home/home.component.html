@@ -18,40 +18,44 @@
                 <p>Vote Average: {{ selectedMovie?.vote_average }}</p>
             </div>
         </div>
-    </div>
-
-    <div class="selecting-section">
-        <div *ngFor="let movie of movies.slice(currentPosition, currentPosition + 7)"
-            (click)="handleSelectedMovie(movie)">
-            <img class="selecting-img" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="Movie Poster">
-        </div>
-        <div class="move-btns">
-            <span class="selecting-arrow" (click)="forward()" *ngIf="currentPosition + 7 < movies.length"><mat-icon>arrow_forward_ios</mat-icon></span>
-            <span class="selecting-arrow-back" (click)="backward()" *ngIf="currentPosition > 0"><mat-icon>arrow_back_ios</mat-icon></span>
+        <div class="selecting-section">
+            <div *ngFor="let movie of movies.slice(currentPosition, currentPosition + 7)"
+                (click)="handleSelectedMovie(movie)">
+                <img class="selecting-img" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+                    alt="Movie Poster">
+            </div>
+            <div class="move-btns">
+                <span class="selecting-arrow" (click)="forward()"
+                    *ngIf="currentPosition + 7 < movies.length"><mat-icon>arrow_forward_ios</mat-icon></span>
+                <span class="selecting-arrow-back" (click)="backward()"
+                    *ngIf="currentPosition > 0"><mat-icon>arrow_back_ios</mat-icon></span>
+            </div>
         </div>
     </div>
 
     <div class="trending-container">
         <div class="head-trending">
             <a class="trend-title">Top Rated</a>
-            <!-- <a class="trend-title">Latest & Trending</a> -->
             <a class="view-all">View All <mat-icon class="view-icon">arrow_forward_ios</mat-icon></a>
         </div>
         <div class="trend-box">
-            <div *ngFor="let trending of topMovies.slice(navPosition, navPosition + 10); let i = index;" (mouseenter)="onTopRatedImageHover(i, trending)">
+            <div *ngFor="let trending of topMovies.slice(navPosition, navPosition + 10); let i = index;"
+                (mouseenter)="onTopRatedImageHover(i, trending)">
                 <div class="trend-poster">
-                    <img  class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + trending.poster_path" alt="Movie Poster">
+                    <img class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + trending.poster_path"
+                        alt="Movie Poster">
                 </div>
-                <div *ngIf="isTopRatedHover && hoveredImageIndex === i" class="show-details">
-                    <!-- <img class="show-details-img" [src]="'https://image.tmdb.org/t/p/w500' + hoveredImageData.backdrop_path"> -->
-                    <iframe width="350" height="175" [src]="sanitizeYouTubeUrl(hoveredVideoKey)" frameborder="0" allow="autoplay"></iframe>
+                <div *ngIf="isTopRatedHover && hoveredImageIndex === i" class="show-details"
+                    (mouseleave)="isTopRatedHover = false">
+                    <iframe width="350" height="175" [src]="sanitizeYouTubeUrl(hoveredVideoKey)" frameborder="0"
+                        allow="autoplay"></iframe>
                     <div class="trend-info">
-                        <h1>{{ hoveredImageData.title }}</h1>
+                        <div class="title-data">
+                            <p>{{ hoveredImageData.release_date }}</p>
+                            <p>Popularity: {{ hoveredImageData.popularity }}</p>
+                            <p>Vote: {{ hoveredImageData.vote_average }}</p>
+                        </div>
                         <p>{{ hoveredImageData.overview }}</p>
-                        <p>Release Date: {{ hoveredImageData.release_date }}</p>
-                        <p>Popularity: {{ hoveredImageData.popularity }}</p>
-                        <p>Popularity: {{ hoveredImageData.popularity }}</p>
-                        <p>Vote Average: {{ hoveredImageData.vote_average }}</p>
                     </div>
                 </div>
             </div>
@@ -68,20 +72,22 @@
             <a class="view-all">View All <mat-icon class="view-icon">arrow_forward_ios</mat-icon></a>
         </div>
         <div class="trend-box">
-            <div *ngFor="let tvShows of popularShows.slice(showPosition, showPosition + 10); let i = index;">
+            <div *ngFor="let tvShows of popularShows.slice(showPosition, showPosition + 10); let i = index;"
+                (mouseenter)="onPopularShowImageHover(i, tvShows)">
                 <div class="trend-poster">
-                    <img (mouseleave)="isPopularShowHover = false" (mouseenter)="onPopularShowImageHover(i, tvShows)" class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + tvShows.poster_path"
+                    <img class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + tvShows.poster_path"
                         alt="Movie Poster">
                 </div>
-                <div *ngIf="isPopularShowHover && hoveredImageIndex === i" class="show-details">
-                    <img class="show-details-img" [src]="'https://image.tmdb.org/t/p/w500' + hoveredImageData.backdrop_path">
-                    <div class="trend-info">
-                        <h1>{{ hoveredImageData.title }}</h1>
+                <div *ngIf="isPopularShowHover && hoveredImageIndex === i" class="show-details"
+                    (mouseleave)="isPopularShowHover = false">
+                    <img class="show-details-img"
+                        [src]="'https://image.tmdb.org/t/p/w500' + hoveredImageData.backdrop_path">
+                    <div class="tvshowData">
+                        <div class="showHeader">
+                            <p>Popularity: {{ hoveredImageData.popularity }}</p>
+                            <p>Vote: {{ hoveredImageData.vote_average }}</p>
+                        </div>
                         <p>{{ hoveredImageData.overview }}</p>
-                        <p>Release Date: {{ hoveredImageData.release_date }}</p>
-                        <p>Popularity: {{ hoveredImageData.popularity }}</p>
-                        <p>Popularity: {{ hoveredImageData.popularity }}</p>
-                        <p>Vote Average: {{ hoveredImageData.vote_average }}</p>
                     </div>
                 </div>
             </div>
@@ -98,21 +104,23 @@
             <a class="view-all">View All <mat-icon class="view-icon">arrow_forward_ios</mat-icon></a>
         </div>
         <div class="trend-box">
-            <div *ngFor="let upcomMovie of upcommingMovie.slice(moviePosition, moviePosition + 10); let i = index;">
+            <div *ngFor="let upcomMovie of upcommingMovie.slice(moviePosition, moviePosition + 10); let i = index;"
+                (mouseenter)="onUpcomingMovieImageHover(i, upcomMovie)">
                 <div class="trend-poster">
-                    <img (mouseenter)="onUpcomingMovieImageHover(i, upcomMovie)" class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + upcomMovie.poster_path"
+                    <img class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + upcomMovie.poster_path"
                         alt="Movie Poster">
                 </div>
-                <div *ngIf="isUpcomingMovieHover && hoveredImageIndex === i" class="show-details">
-                    <iframe width="350" height="175" [src]="sanitizeYouTubeUrl(hoveredVideoKey)" frameborder="0" allow="autoplay"></iframe>
-                    <!-- <img class="show-details-img" [src]="'https://image.tmdb.org/t/p/w500' + hoveredImageData.backdrop_path"> -->
+                <div *ngIf="isUpcomingMovieHover && hoveredImageIndex === i" class="show-details"
+                    (mouseleave)="isUpcomingMovieHover = false">
+                    <iframe width="350" height="175" [src]="sanitizeYouTubeUrl(hoveredVideoKey)" frameborder="0"
+                        allow="autoplay"></iframe>
                     <div class="trend-info">
-                        <h1>{{ hoveredImageData.title }}</h1>
+                        <div class="title-data">
+                            <p>{{ hoveredImageData.release_date }}</p>
+                            <p>Popularity: {{ hoveredImageData.popularity }}</p>
+                            <p>Vote: {{ hoveredImageData.vote_average }}</p>
+                        </div>
                         <p>{{ hoveredImageData.overview }}</p>
-                        <p>Release Date: {{ hoveredImageData.release_date }}</p>
-                        <p>Popularity: {{ hoveredImageData.popularity }}</p>
-                        <p>Popularity: {{ hoveredImageData.popularity }}</p>
-                        <p>Vote Average: {{ hoveredImageData.vote_average }}</p>
                     </div>
                 </div>
             </div>

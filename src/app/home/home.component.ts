@@ -30,10 +30,10 @@ export class HomeComponent implements OnInit {
   constructor(private movieService: MovieService, private sanitizer: DomSanitizer) { }
 
   sanitizeYouTubeUrl(key: string): SafeResourceUrl {
-    console.log('key', key);
+    // console.log('key', key);
 
     const url = `https://www.youtube-nocookie.com/embed/${key}?autoplay=1&mute=1`;
-    console.log(url);
+    // console.log(url);
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
