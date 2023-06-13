@@ -40,11 +40,11 @@
         <div class="trend-box">
             <div *ngFor="let trending of topMovies.slice(navPosition, navPosition + 10); let i = index;" (mouseenter)="onTopRatedImageHover(i, trending)">
                 <div class="trend-poster">
-                    <img (mouseleave)="isTopRatedHover = false"  class="border-img"
-                        [src]="'https://image.tmdb.org/t/p/w200' + trending.poster_path" alt="Movie Poster">
+                    <img  class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + trending.poster_path" alt="Movie Poster">
                 </div>
                 <div *ngIf="isTopRatedHover && hoveredImageIndex === i" class="show-details">
-                    <img class="show-details-img" [src]="'https://image.tmdb.org/t/p/w500' + hoveredImageData.backdrop_path">
+                    <!-- <img class="show-details-img" [src]="'https://image.tmdb.org/t/p/w500' + hoveredImageData.backdrop_path"> -->
+                    <iframe width="350" height="175" [src]="sanitizeYouTubeUrl(hoveredVideoKey)" frameborder="0" allow="autoplay"></iframe>
                     <div class="trend-info">
                         <h1>{{ hoveredImageData.title }}</h1>
                         <p>{{ hoveredImageData.overview }}</p>
@@ -54,13 +54,6 @@
                         <p>Vote Average: {{ hoveredImageData.vote_average }}</p>
                     </div>
                 </div>
-                <!-- <div class="trend-info">
-                    <h1>{{ trending.title }}</h1>
-                    <p>{{ trending.overview }}</p>
-                    <p>Release Date: {{ trending.release_date }}</p>
-                    <p>Popularity: {{ trending.popularity }}</p>
-                    <p>Vote Average: {{ trending.vote_average }}</p>
-                </div> -->
             </div>
         </div>
         <div class="trend-navigation">
@@ -107,11 +100,12 @@
         <div class="trend-box">
             <div *ngFor="let upcomMovie of upcommingMovie.slice(moviePosition, moviePosition + 10); let i = index;">
                 <div class="trend-poster">
-                    <img (mouseleave)="isUpcomingMovieHover = false" (mouseenter)="onUpcomingMovieImageHover(i, upcomMovie)" class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + upcomMovie.poster_path"
+                    <img (mouseenter)="onUpcomingMovieImageHover(i, upcomMovie)" class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + upcomMovie.poster_path"
                         alt="Movie Poster">
                 </div>
                 <div *ngIf="isUpcomingMovieHover && hoveredImageIndex === i" class="show-details">
-                    <img class="show-details-img" [src]="'https://image.tmdb.org/t/p/w500' + hoveredImageData.backdrop_path">
+                    <iframe width="350" height="175" [src]="sanitizeYouTubeUrl(hoveredVideoKey)" frameborder="0" allow="autoplay"></iframe>
+                    <!-- <img class="show-details-img" [src]="'https://image.tmdb.org/t/p/w500' + hoveredImageData.backdrop_path"> -->
                     <div class="trend-info">
                         <h1>{{ hoveredImageData.title }}</h1>
                         <p>{{ hoveredImageData.overview }}</p>
@@ -129,4 +123,3 @@
         </div>
     </div>
 </div>
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Yxaw1otUuUI?autoplay=1&mute=1" frameborder="0" allow="autoplay"></iframe>

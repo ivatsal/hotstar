@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../movie.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -23,9 +24,18 @@ export class HomeComponent implements OnInit {
   hoveredImageIndex: number = 0;
   hoveredImageData: any;
 
-  youtubeKey: string = ''
+  youtubeKey: string = '';
+  hoveredVideoKey!: string;
 
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService, private sanitizer: DomSanitizer) { }
+
+  sanitizeYouTubeUrl(key: string): SafeResourceUrl {
+    console.log('key', key);
+
+    const url = `https://www.youtube-nocookie.com/embed/${key}?autoplay=1&mute=1`;
+    console.log(url);
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
 
   ngOnInit() {
     this.fetchMovies();
@@ -39,9 +49,7 @@ export class HomeComponent implements OnInit {
       response => {
         this.movies = response.results,
           this.selectedMovie = this.movies[0]
-        // console.log(this.movies);
       },
-      // response => console.log(response),
       error => console.error(error)
     );
   }
@@ -50,15 +58,12 @@ export class HomeComponent implements OnInit {
     this.movieService.getTopRatedMovies().subscribe(
       response => {
         this.topMovies = response.results;
-        // console.log(this.topMovies);
         for (const movie of this.topMovies) {
           const movieId = movie.id;
           this.movieService.getMovieVideos(movieId).subscribe(result => {
             if (result && result.results && result.results.length > 0) {
-              this.youtubeKey = result.results[0].key;
-              console.log(this.youtubeKey);
-            } else {
-                console.error('Invalid result or missing data');
+              movie.youtubeKey = result.results[0].key;
+              // console.log(this.youtubeKey);
             }
           })
         }
@@ -86,15 +91,12 @@ export class HomeComponent implements OnInit {
         this.upcommingMovie = response.results;
         for (const movie of this.upcommingMovie) {
           const movieId = movie.id;
-          // console.log("Movie ID:", movieId);
           this.movieService.getMovieVideos(movieId).subscribe(result => {
             if (result && result.results && result.results.length > 0) {
-              this.youtubeKey = result.results[0].key;
-              console.log(this.youtubeKey);
-            } else {
-              console.error('Invalid result or missing data');
+              movie.youtubeKey = result.results[0].key;
+              // console.log(this.youtubeKey);
             }
-          });          
+          });
         }
       },
       error => console.error(error)
@@ -151,6 +153,7 @@ export class HomeComponent implements OnInit {
     this.hoveredImageIndex = index;
     this.hoveredImageData = hoveredData;
     this.isTopRatedHover = true;
+    this.hoveredVideoKey = hoveredData.youtubeKey;
   }
 
   onPopularShowImageHover(index: number, hoveredData: any): void {
@@ -163,6 +166,7 @@ export class HomeComponent implements OnInit {
     this.hoveredImageIndex = index;
     this.hoveredImageData = hoveredData;
     this.isUpcomingMovieHover = true;
+    this.hoveredVideoKey = hoveredData.youtubeKey;
   }
 
 }
