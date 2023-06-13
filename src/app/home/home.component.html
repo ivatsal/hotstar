@@ -74,7 +74,7 @@
             <a class="trend-title">Popular Shows</a>
             <a class="view-all">View All <mat-icon class="view-icon">arrow_forward_ios</mat-icon></a>
         </div>
-        <div class="trend-box" #trendBox>
+        <div class="trend-box">
             <div *ngFor="let tvShows of popularShows.slice(showPosition, showPosition + 10); let i = index;">
                 <div class="trend-poster">
                     <img (mouseleave)="isPopularShowHover = false" (mouseenter)="onPopularShowImageHover(i, tvShows)" class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + tvShows.poster_path"
@@ -129,3 +129,4 @@
         </div>
     </div>
 </div>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Yxaw1otUuUI?autoplay=1&mute=1" frameborder="0" allow="autoplay"></iframe>

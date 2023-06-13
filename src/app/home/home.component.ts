@@ -54,10 +54,12 @@ export class HomeComponent implements OnInit {
         for (const movie of this.topMovies) {
           const movieId = movie.id;
           this.movieService.getMovieVideos(movieId).subscribe(result => {
-            this.youtubeKey = result.results[0].key
-            // this.movieService.getYouTubeVideoURL(result.results[0].key).subscribe(result => {
-            //   console.log(result);
-            // })
+            if (result && result.results && result.results.length > 0) {
+              this.youtubeKey = result.results[0].key;
+              console.log(this.youtubeKey);
+            } else {
+                console.error('Invalid result or missing data');
+            }
           })
         }
       },
@@ -71,7 +73,7 @@ export class HomeComponent implements OnInit {
         this.popularShows = response.results;
         for (const movie of this.popularShows) {
           const movieId = movie.id;
-          console.log("Movie ID:", movieId);
+          // console.log("Movie ID:", movieId);
         }
       },
       error => console.error(error)
@@ -84,7 +86,15 @@ export class HomeComponent implements OnInit {
         this.upcommingMovie = response.results;
         for (const movie of this.upcommingMovie) {
           const movieId = movie.id;
-          console.log("Movie ID:", movieId);
+          // console.log("Movie ID:", movieId);
+          this.movieService.getMovieVideos(movieId).subscribe(result => {
+            if (result && result.results && result.results.length > 0) {
+              this.youtubeKey = result.results[0].key;
+              console.log(this.youtubeKey);
+            } else {
+              console.error('Invalid result or missing data');
+            }
+          });          
         }
       },
       error => console.error(error)
@@ -141,21 +151,18 @@ export class HomeComponent implements OnInit {
     this.hoveredImageIndex = index;
     this.hoveredImageData = hoveredData;
     this.isTopRatedHover = true;
-    const movieId = hoveredData.id;
   }
 
   onPopularShowImageHover(index: number, hoveredData: any): void {
     this.hoveredImageIndex = index;
     this.hoveredImageData = hoveredData;
     this.isPopularShowHover = true;
-    const movieId = hoveredData.id;
   }
 
   onUpcomingMovieImageHover(index: number, hoveredData: any): void {
     this.hoveredImageIndex = index;
     this.hoveredImageData = hoveredData;
     this.isUpcomingMovieHover = true;
-    const movieId = hoveredData.id;
   }
 
 }
