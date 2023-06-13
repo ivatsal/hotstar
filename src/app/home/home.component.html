@@ -39,7 +39,7 @@
             <a class="view-all">View All <mat-icon class="view-icon">arrow_forward_ios</mat-icon></a>
         </div>
         <div class="trend-box">
-            <div *ngFor="let trending of topMovies.slice(navPosition, navPosition + 10); let i = index;"
+            <div *ngFor="let trending of topMovies.slice(navPosition, navPosition + 8); let i = index;"
                 (mouseenter)="onTopRatedImageHover(i, trending)">
                 <div class="trend-poster">
                     <img class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + trending.poster_path"
@@ -61,8 +61,9 @@
             </div>
         </div>
         <div class="trend-navigation">
-            <span class="arrow-navigation" (click)="navigationBack()"><mat-icon>arrow_back_ios</mat-icon></span>
-            <span class="arrow-navigation" (click)="navigationForward()"><mat-icon>arrow_forward_ios</mat-icon></span>
+            <span class="arrow-navigation-back" (click)="navigationBack()"><mat-icon>arrow_back_ios</mat-icon></span>
+            <span class="arrow-navigation-nxt" (click)="navigationForward()"
+            *ngIf="navPosition + 7 < movies.length" ><mat-icon>arrow_forward_ios</mat-icon></span>
         </div>
     </div>
 
@@ -72,7 +73,7 @@
             <a class="view-all">View All <mat-icon class="view-icon">arrow_forward_ios</mat-icon></a>
         </div>
         <div class="trend-box">
-            <div *ngFor="let tvShows of popularShows.slice(showPosition, showPosition + 10); let i = index;"
+            <div *ngFor="let tvShows of popularShows.slice(showPosition, showPosition + 8); let i = index;"
                 (mouseenter)="onPopularShowImageHover(i, tvShows)">
                 <div class="trend-poster">
                     <img class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + tvShows.poster_path"
@@ -93,8 +94,9 @@
             </div>
         </div>
         <div class="trend-navigation">
-            <span class="arrow-navigation" (click)="tvBack()"><mat-icon>arrow_back_ios</mat-icon></span>
-            <span class="arrow-navigation" (click)="tvForward()"><mat-icon>arrow_forward_ios</mat-icon></span>
+            <span class="arrow-navigation-back" (click)="tvBack()"><mat-icon>arrow_back_ios</mat-icon></span>
+            <span class="arrow-navigation-nxt" (click)="tvForward()"
+            *ngIf="showPosition + 7 < movies.length"><mat-icon>arrow_forward_ios</mat-icon></span>
         </div>
     </div>
 
@@ -104,7 +106,7 @@
             <a class="view-all">View All <mat-icon class="view-icon">arrow_forward_ios</mat-icon></a>
         </div>
         <div class="trend-box">
-            <div *ngFor="let upcomMovie of upcommingMovie.slice(moviePosition, moviePosition + 10); let i = index;"
+            <div *ngFor="let upcomMovie of upcommingMovie.slice(moviePosition, moviePosition + 8); let i = index;"
                 (mouseenter)="onUpcomingMovieImageHover(i, upcomMovie)">
                 <div class="trend-poster">
                     <img class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + upcomMovie.poster_path"
@@ -126,8 +128,9 @@
             </div>
         </div>
         <div class="trend-navigation">
-            <span class="arrow-navigation" (click)="movieBack()"><mat-icon>arrow_back_ios</mat-icon></span>
-            <span class="arrow-navigation" (click)="movieForward()"><mat-icon>arrow_forward_ios</mat-icon></span>
+            <span class="arrow-navigation-back" (click)="movieBack()"><mat-icon>arrow_back_ios</mat-icon></span>
+            <span class="arrow-navigation-nxt" (click)="movieForward()"
+            *ngIf="moviePosition + 7 < movies.length"><mat-icon>arrow_forward_ios</mat-icon></span>
         </div>
     </div>
 </div>

@@ -1,5 +1,6 @@
 .container {
     background: hsl(228, 14.29%, 6.86%);
+    overflow: hidden;
 
     .movie-container {
         position: relative;
@@ -77,7 +78,7 @@
 .trending-container {
     display: flex;
     flex-direction: column;
-    padding-left: 150px;
+    margin-left: 120px;
 
     .head-trending {
         display: flex;
@@ -146,14 +147,23 @@
     }
 
     .trend-navigation {
-        display: flex;
-        justify-content: space-between;
         color: white;
+        cursor: pointer;
 
-        .arrow-navigation {
+        .arrow-navigation-back {
             position: relative;
             bottom: 175px;
-            cursor: pointer;
+            /* background: linear-gradient(88deg,black 0.62%,rgba(15,16,20,0) 99.33%); */
+            padding: 145px 20px;
+            right: 18px;
+        }
+
+        .arrow-navigation-nxt {
+            position: relative;
+            bottom: 175px;
+            /* background: linear-gradient(269.25deg,black 0.62%,rgba(15,16,20,0) 99.33%); */
+            padding: 145px 20px;
+            left: 120em;
         }
     }
 
