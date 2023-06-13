@@ -31,7 +31,6 @@ export class HomeComponent implements OnInit {
 
   sanitizeYouTubeUrl(key: string): SafeResourceUrl {
     // console.log('key', key);
-
     const url = `https://www.youtube-nocookie.com/embed/${key}?autoplay=1&mute=1`;
     // console.log(url);
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
@@ -63,7 +62,6 @@ export class HomeComponent implements OnInit {
           this.movieService.getMovieVideos(movieId).subscribe(result => {
             if (result && result.results && result.results.length > 0) {
               movie.youtubeKey = result.results[0].key;
-              // console.log(this.youtubeKey);
             }
           })
         }
@@ -94,7 +92,6 @@ export class HomeComponent implements OnInit {
           this.movieService.getMovieVideos(movieId).subscribe(result => {
             if (result && result.results && result.results.length > 0) {
               movie.youtubeKey = result.results[0].key;
-              // console.log(this.youtubeKey);
             }
           });
         }
@@ -141,7 +138,6 @@ export class HomeComponent implements OnInit {
   movieForward() {
     this.moviePosition += 1;
   }
-
   movieBack() {
     this.moviePosition -= 1;
     if (this.moviePosition < 0) {
@@ -168,5 +164,4 @@ export class HomeComponent implements OnInit {
     this.isUpcomingMovieHover = true;
     this.hoveredVideoKey = hoveredData.youtubeKey;
   }
-
 }

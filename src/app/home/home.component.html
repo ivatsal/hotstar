@@ -47,8 +47,7 @@
                 </div>
                 <div *ngIf="isTopRatedHover && hoveredImageIndex === i" class="show-details"
                     (mouseleave)="isTopRatedHover = false">
-                    <iframe width="350" height="175" [src]="sanitizeYouTubeUrl(hoveredVideoKey)" frameborder="0"
-                        allow="autoplay"></iframe>
+                    <iframe width="350" height="175" [src]="sanitizeYouTubeUrl(hoveredVideoKey)" frameborder="0" allow="autoplay"></iframe>
                     <div class="trend-info">
                         <div class="title-data">
                             <p>{{ hoveredImageData.release_date }}</p>
@@ -76,8 +75,7 @@
             <div *ngFor="let tvShows of popularShows.slice(showPosition, showPosition + 8); let i = index;"
                 (mouseenter)="onPopularShowImageHover(i, tvShows)">
                 <div class="trend-poster">
-                    <img class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + tvShows.poster_path"
-                        alt="Movie Poster">
+                    <img class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + tvShows.poster_path" alt="Movie Poster">
                 </div>
                 <div *ngIf="isPopularShowHover && hoveredImageIndex === i" class="show-details"
                     (mouseleave)="isPopularShowHover = false">
@@ -109,8 +107,7 @@
             <div *ngFor="let upcomMovie of upcommingMovie.slice(moviePosition, moviePosition + 8); let i = index;"
                 (mouseenter)="onUpcomingMovieImageHover(i, upcomMovie)">
                 <div class="trend-poster">
-                    <img class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + upcomMovie.poster_path"
-                        alt="Movie Poster">
+                    <img class="border-img" [src]="'https://image.tmdb.org/t/p/w200' + upcomMovie.poster_path" alt="Movie Poster">
                 </div>
                 <div *ngIf="isUpcomingMovieHover && hoveredImageIndex === i" class="show-details"
                     (mouseleave)="isUpcomingMovieHover = false">
