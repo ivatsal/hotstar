@@ -27,10 +27,14 @@ export class HomeComponent implements OnInit {
   youtubeKey: string = '';
   hoveredVideoKey!: string;
 
+  showIframe = false;
+  hoverTimeout: string | number | any | undefined;
+
   constructor(private movieService: MovieService, private sanitizer: DomSanitizer) { }
 
   sanitizeYouTubeUrl(key: string): SafeResourceUrl {
     // console.log('key', key);
+
     const url = `https://www.youtube-nocookie.com/embed/${key}?autoplay=1&mute=1`;
     // console.log(url);
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
@@ -62,6 +66,7 @@ export class HomeComponent implements OnInit {
           this.movieService.getMovieVideos(movieId).subscribe(result => {
             if (result && result.results && result.results.length > 0) {
               movie.youtubeKey = result.results[0].key;
+              // console.log(this.youtubeKey);
             }
           })
         }
@@ -92,6 +97,7 @@ export class HomeComponent implements OnInit {
           this.movieService.getMovieVideos(movieId).subscribe(result => {
             if (result && result.results && result.results.length > 0) {
               movie.youtubeKey = result.results[0].key;
+              // console.log(this.youtubeKey);
             }
           });
         }
@@ -138,6 +144,7 @@ export class HomeComponent implements OnInit {
   movieForward() {
     this.moviePosition += 1;
   }
+
   movieBack() {
     this.moviePosition -= 1;
     if (this.moviePosition < 0) {
@@ -150,6 +157,18 @@ export class HomeComponent implements OnInit {
     this.hoveredImageData = hoveredData;
     this.isTopRatedHover = true;
     this.hoveredVideoKey = hoveredData.youtubeKey;
+
+    this.showIframe = false;
+    clearTimeout(this.hoverTimeout);
+    this.hoverTimeout = setTimeout(() => {
+      this.showIframe = true;
+    }, 1500);
+  }
+
+  onTopRatedImageLeave(): void {
+    clearTimeout(this.hoverTimeout);
+    this.isTopRatedHover = false;
+    this.showIframe = false;
   }
 
   onPopularShowImageHover(index: number, hoveredData: any): void {
@@ -163,5 +182,11 @@ export class HomeComponent implements OnInit {
     this.hoveredImageData = hoveredData;
     this.isUpcomingMovieHover = true;
     this.hoveredVideoKey = hoveredData.youtubeKey;
+
+    this.showIframe = false;
+    clearTimeout(this.hoverTimeout);
+    this.hoverTimeout = setTimeout(() => {
+      this.showIframe = true;
+    }, 1500);
   }
 }

@@ -115,7 +115,6 @@
         display: flex;
         flex-direction: row;
         gap: 20px;
-        /* overflow: hidden; */
 
         .trend-poster {
             cursor: pointer;
@@ -183,9 +182,16 @@
         filter: drop-shadow(10px 5px 15px black);
     }
 
+    .show-img{
+        height: 175px;
+        width: 350px;
+        cursor: pointer;
+    }
+
     .show-details-img {
         height: 195px;
         width: 350px;
+        cursor: pointer;
     }
 
     .tvshowData {
