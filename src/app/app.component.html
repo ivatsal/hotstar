@@ -4,8 +4,7 @@
             <mat-nav-list class="menu-animation" [style.width]="menuShow ? '650px' : '125px'">
                 <div class="header-logo">
                     <img src="\assets\imgs\hotstarlogo.svg" class="hot-logo">
-                    <span class="subscirbe-text">Subscribe<mat-icon
-                            class="arrow-icon">arrow_forward_ios</mat-icon></span>
+                    <span *ngIf="!menuShow" class="subscirbe-text">Subscribe<mat-icon class="arrow-icon">arrow_forward_ios</mat-icon></span>
                 </div>
                 <div class="btn-container">
                     <div class="icon-font" *ngFor="let menu of menuData" (mouseenter)="menuShow = true">

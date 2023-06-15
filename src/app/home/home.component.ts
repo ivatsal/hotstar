@@ -34,8 +34,7 @@ export class HomeComponent implements OnInit {
 
   sanitizeYouTubeUrl(key: string): SafeResourceUrl {
     // console.log('key', key);
-
-    const url = `https://www.youtube-nocookie.com/embed/${key}?autoplay=1&mute=1`;
+    const url = `https://www.youtube-nocookie.com/embed/${key}?autoplay=1&mute=1&controls=0&disablekb=1`;
     // console.log(url);
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
